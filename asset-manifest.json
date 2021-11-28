@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/WillNess210/work-timers/static/css/main.8c8b27cf.chunk.css",
-    "main.js": "/WillNess210/work-timers/static/js/main.c1167da3.chunk.js",
-    "main.js.map": "/WillNess210/work-timers/static/js/main.c1167da3.chunk.js.map",
-    "runtime-main.js": "/WillNess210/work-timers/static/js/runtime-main.d45e00e2.js",
-    "runtime-main.js.map": "/WillNess210/work-timers/static/js/runtime-main.d45e00e2.js.map",
-    "static/js/2.88a3df1d.chunk.js": "/WillNess210/work-timers/static/js/2.88a3df1d.chunk.js",
-    "static/js/2.88a3df1d.chunk.js.map": "/WillNess210/work-timers/static/js/2.88a3df1d.chunk.js.map",
-    "static/js/3.dde9f46a.chunk.js": "/WillNess210/work-timers/static/js/3.dde9f46a.chunk.js",
-    "static/js/3.dde9f46a.chunk.js.map": "/WillNess210/work-timers/static/js/3.dde9f46a.chunk.js.map",
-    "index.html": "/WillNess210/work-timers/index.html",
-    "static/css/main.8c8b27cf.chunk.css.map": "/WillNess210/work-timers/static/css/main.8c8b27cf.chunk.css.map",
-    "static/js/2.88a3df1d.chunk.js.LICENSE.txt": "/WillNess210/work-timers/static/js/2.88a3df1d.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/WillNess210/work-timers/static/media/logo.6ce24c58.svg"
+    "main.css": "/work-timers/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/work-timers/static/js/main.c1167da3.chunk.js",
+    "main.js.map": "/work-timers/static/js/main.c1167da3.chunk.js.map",
+    "runtime-main.js": "/work-timers/static/js/runtime-main.aa5f1336.js",
+    "runtime-main.js.map": "/work-timers/static/js/runtime-main.aa5f1336.js.map",
+    "static/js/2.88a3df1d.chunk.js": "/work-timers/static/js/2.88a3df1d.chunk.js",
+    "static/js/2.88a3df1d.chunk.js.map": "/work-timers/static/js/2.88a3df1d.chunk.js.map",
+    "static/js/3.dde9f46a.chunk.js": "/work-timers/static/js/3.dde9f46a.chunk.js",
+    "static/js/3.dde9f46a.chunk.js.map": "/work-timers/static/js/3.dde9f46a.chunk.js.map",
+    "index.html": "/work-timers/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/work-timers/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.88a3df1d.chunk.js.LICENSE.txt": "/work-timers/static/js/2.88a3df1d.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/work-timers/static/media/logo.6ce24c58.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.d45e00e2.js",
+    "static/js/runtime-main.aa5f1336.js",
     "static/js/2.88a3df1d.chunk.js",
     "static/css/main.8c8b27cf.chunk.css",
     "static/js/main.c1167da3.chunk.js"
