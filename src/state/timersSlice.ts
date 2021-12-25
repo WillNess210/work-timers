@@ -4,6 +4,7 @@ import { stringify } from "querystring";
 export interface TimerState {
   seconds: number;
   stopped: boolean;
+  flashing: boolean;
   // counter timer specific
   timesCompleted: number;
 }
@@ -15,6 +16,7 @@ export interface TimersState {
 const defaultTimerState: TimerState = {
   seconds: 0,
   stopped: true,
+  flashing: false,
   timesCompleted: 0,
 };
 
@@ -52,6 +54,12 @@ const timersSlice = createSlice({
       action: PayloadAction<{ key: string; value: number }>
     ) => {
       state[action.payload.key].timesCompleted = action.payload.value;
+    },
+    setTimerFlashing: (
+      state,
+      action: PayloadAction<{ key: string; value: boolean }>
+    ) => {
+      state[action.payload.key].flashing = action.payload.value;
     },
     // all timer actions
     startAllTimers: (state) => {

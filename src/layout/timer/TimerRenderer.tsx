@@ -3,6 +3,7 @@ import { Box, Container } from "@chakra-ui/react";
 import { CounterTimer, Timer, TimerType } from "../../logic/Timer";
 import CounterTimerRenderer from "./CounterTimerRenderer";
 import "./timer.css";
+import useTimerFlashingState from "../../state/useTimerFlashingState";
 
 interface TimerRendererProps {
   timer: Timer;
@@ -10,6 +11,8 @@ interface TimerRendererProps {
 }
 
 const TimerRenderer = ({ timer, timerId }: TimerRendererProps): JSX.Element => {
+  const { bgColor } = useTimerFlashingState(timerId);
+
   if (timer.type === TimerType.CounterTimer) {
     return (
       <Container maxW="container.xl">
@@ -17,7 +20,7 @@ const TimerRenderer = ({ timer, timerId }: TimerRendererProps): JSX.Element => {
           borderWidth="1px"
           borderRadius="lg"
           className="timer"
-          bg="gray.100"
+          bg={bgColor}
           p="1rem"
         >
           <CounterTimerRenderer

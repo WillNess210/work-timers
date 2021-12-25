@@ -1,10 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import timersSlice, { TimersState } from "../../state/timersSlice";
-import useTimerState from "../../state/useTimerState";
-import { useAppDispatch, useAppSelector } from "../../store";
 import { CounterTimer } from "../Timer";
 import useCountdownTimer from "./useCountdownTimer";
-import useTimer from "./useTimer";
 
 interface UseCounterTimerResponse {
   secondsRemaining: number;

@@ -8,6 +8,7 @@ interface UseCountdownTimerResponse {
   stopped: boolean;
   markedForRestart: boolean;
   setStopped: (stopped: boolean) => void;
+  setFlashing: (flashing: boolean) => void;
   resetTimer: () => void;
   resetTimerAndStop: () => void;
   resetTimerAndStart: () => void;
@@ -19,22 +20,36 @@ export default function useCountdownTimer(
   key: string,
   durationInSeconds: number
 ): UseCountdownTimerResponse {
-  const { timerState, stopped, seconds, setStopped, incrementTimesCompleted } =
-    useTimerState(key);
+  const {
+    timerState,
+    stopped,
+    seconds,
+    flashing,
+    setStopped,
+    setFlashing,
+    incrementTimesCompleted,
+  } = useTimerState(key);
 
   const [previousFinishedTimestamp, setPreviousFinishedTimestamp] = useState(0);
   const [markedForRestart, setMarkedForRestart] = useState(false);
 
-  const resetTimer = useCallback(
-    () => setPreviousFinishedTimestamp(seconds),
-    [setPreviousFinishedTimestamp, seconds]
-  );
+  const resetTimer = useCallback(() => {
+    setPreviousFinishedTimestamp(seconds);
+    setFlashing(false);
+  }, [setPreviousFinishedTimestamp, seconds, setFlashing]);
+
+  const incrementTimesCompletedCallback = useCallback(() => {
+    incrementTimesCompleted();
+    setFlashing(false);
+  }, [incrementTimesCompleted, setFlashing]);
 
   const secondsRemainingCalculation = useMemo(() => {
     if (timerState) {
       const calculation =
         durationInSeconds - (timerState.seconds - previousFinishedTimestamp);
-      if (calculation <= 0 && markedForRestart) {
+      if (calculation <= 0 && !flashing && !markedForRestart) {
+        setFlashing(true);
+      } else if (calculation <= 0 && markedForRestart) {
         setMarkedForRestart(false);
         resetTimer();
       }
@@ -46,8 +61,10 @@ export default function useCountdownTimer(
     timerState,
     previousFinishedTimestamp,
     markedForRestart,
+    flashing,
     setMarkedForRestart,
     resetTimer,
+    setFlashing,
   ]);
 
   const secondsRemaining = useMemo(() => {
@@ -73,10 +90,11 @@ export default function useCountdownTimer(
     stopped,
     markedForRestart,
     setStopped,
+    setFlashing,
     resetTimer,
     resetTimerAndStop,
     resetTimerAndStart,
-    incrementTimesCompleted,
+    incrementTimesCompleted: incrementTimesCompletedCallback,
     setMarkedForRestart: () => setMarkedForRestart(true),
   };
 }

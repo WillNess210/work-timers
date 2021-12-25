@@ -7,14 +7,16 @@ interface UseTimerStateResponse {
   timerState: TimerState | undefined;
   seconds: number;
   stopped: boolean;
+  flashing: boolean;
   setStopped: (stopped: boolean) => void;
+  setFlashing: (flashing: boolean) => void;
   incrementTimesCompleted: () => void;
 }
 
 const actions = timersSlice.actions;
 
 export default function useTimerState(key: string): UseTimerStateResponse {
-  const state = useAppSelector((state) => state.timers as TimersState);
+  const state = useAppSelector((state) => state.timers);
   const dispatch = useAppDispatch();
 
   const timerState = useMemo(
@@ -46,6 +48,15 @@ export default function useTimerState(key: string): UseTimerStateResponse {
     [key, timerState, dispatch, setTimerStopped]
   );
 
+  const setFlashing = useCallback(
+    (flashing: boolean) => {
+      if (timerState) {
+        dispatch(actions.setTimerFlashing({ key, value: flashing }));
+      }
+    },
+    [key, timerState, dispatch]
+  );
+
   const incrementTimesCompleted = useCallback(() => {
     if (timerState) {
       dispatch(
@@ -74,7 +85,9 @@ export default function useTimerState(key: string): UseTimerStateResponse {
     timerState,
     seconds: timerState ? timerState.seconds : -1,
     stopped: timerState ? timerState.stopped : true,
+    flashing: timerState ? timerState.flashing : true,
     setStopped,
+    setFlashing,
     incrementTimesCompleted,
   };
 }
