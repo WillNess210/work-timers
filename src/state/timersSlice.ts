@@ -14,7 +14,7 @@ export interface TimersState {
 
 const defaultTimerState: TimerState = {
   seconds: 0,
-  stopped: false,
+  stopped: true,
   timesCompleted: 0,
 };
 

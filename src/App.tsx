@@ -4,13 +4,12 @@ import "./App.css";
 import TimerRenderer from "./layout/timer/TimerRenderer";
 import { CounterTimer, Timer, TimerMap, TimerType } from "./logic/Timer";
 import Header from "./layout/header/Header";
-import useTimers from "./logic/hooks/useTimers";
 import useGlobalTimersState from "./state/useGlobalTimersState";
 
 const waterTimer: CounterTimer = {
   type: TimerType.CounterTimer,
   title: "Drink 1/2 Hydroflask",
-  durationInSeconds: 5,
+  durationInSeconds: 60,
 };
 
 const timers: TimerMap = {
@@ -28,7 +27,7 @@ const App = (): JSX.Element => {
   return (
     <>
       <Header startAllTimers={startAllTimers} stopAllTimers={stopAllTimers} />
-      <SimpleGrid minChildWidth="500px" spacing="40px">
+      <SimpleGrid minChildWidth="500px" spacing="40px" marginTop="1rem">
         {timersList.map((timer, i) => (
           <TimerRenderer timer={timer} timerId={`${i}`} />
         ))}

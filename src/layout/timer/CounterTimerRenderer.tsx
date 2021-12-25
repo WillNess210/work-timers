@@ -1,8 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { CounterTimer } from "../../logic/Timer";
 import "./timer.css";
 import useCounterTimer from "../../logic/hooks/useCounterTimer";
-import { Button } from "@chakra-ui/react";
+import { Button, Heading, IconButton, Stack } from "@chakra-ui/react";
+import TimeDisplay from "../../components/TimeDisplay";
+import { GrPlay, GrPause } from "react-icons/gr";
+import PlayStopButton from "../../components/Buttons/PlayStopButton";
+import RestartButton from "../../components/Buttons/RestartButton";
+import RestartPlusButton from "../../components/Buttons/RestartPlusButton";
+import PlusButton from "../../components/Buttons/PlusButton";
 
 interface CounterTimerRendererProps {
   timer: CounterTimer;
@@ -16,22 +22,40 @@ const CounterTimerRenderer = ({
   const state = useCounterTimer(timerId, timer);
 
   return (
-    <>
-      Counter Timer({state.timesCompleted}) {state.secondsRemaining}
-      <Button onClick={() => state.setStopped(!state.stopped)}>
-        {state.stopped ? "||" : ">"}
-      </Button>
-      {state.secondsRemaining > 0 && (
-        <Button onClick={state.complete}>Complete</Button>
-      )}
-      <Button onClick={state.completeAndRestart}>Complete and Restart</Button>
-      {state.secondsRemaining > 0 && (
-        <Button onClick={state.completeAndMarkForRestart}>
-          Complete and Mark for Restart
-        </Button>
-      )}
-      <Button onClick={state.restart}>Restart</Button>
-    </>
+    <div className="timerWrapper">
+      <Heading size="lg">{timer.title}</Heading>
+      <Heading
+        size="md"
+        color="gray.500"
+        fontWeight="semibold"
+        letterSpacing="wide"
+      >
+        Completed {state.timesCompleted} times today
+      </Heading>
+      <TimeDisplay seconds={state.secondsRemaining} stopped={state.stopped} />
+
+      <Stack direction="column" spacing="1rem" align="center">
+        <PlayStopButton
+          stopped={state.stopped}
+          onClick={() => state.setStopped(!state.stopped)}
+        />
+        {/* Complete buttons */}
+        <Stack direction="row">
+          {state.secondsRemaining > 0 && (
+            <PlusButton onClick={state.complete} />
+          )}
+          <RestartPlusButton onClick={state.completeAndRestart} />
+          {state.secondsRemaining > 0 && (
+            <RestartButton
+              onClick={state.completeAndMarkForRestart}
+              buttonText="Complete and Autorestart"
+            />
+          )}
+        </Stack>
+        {/* Restart buttons */}
+        <RestartButton onClick={state.restart} />
+      </Stack>
+    </div>
   );
 };
 
