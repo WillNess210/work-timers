@@ -9,18 +9,19 @@ interface UseTimerFlashingStateResponse {
 
 const NON_FLASH_COLOR = "gray.100";
 const FLASH_COLOR = "yellow.200";
+const FLASH_INTERVAL = 200;
 
 export default function useTimerFlashingState(
   key: string
 ): UseTimerFlashingStateResponse {
-  const state = useAppSelector((state) => state.timers);
+  const timersState = useAppSelector((state) => state.timers);
 
   const [bgColor, setBgColor] = useState(NON_FLASH_COLOR);
 
   const flashing = useMemo(() => {
-    if (!(key in state)) return true;
-    return state[key].stopped ? false : state[key].flashing;
-  }, [state, key]);
+    if (!(key in timersState)) return true;
+    return timersState[key].stopped ? false : timersState[key].flashing;
+  }, [timersState, key]);
 
   useInterval(() => {
     if (flashing) {
@@ -28,7 +29,7 @@ export default function useTimerFlashingState(
     } else if (bgColor !== NON_FLASH_COLOR) {
       setBgColor(NON_FLASH_COLOR);
     }
-  }, 200);
+  }, FLASH_INTERVAL);
 
   return { flashing, bgColor };
 }

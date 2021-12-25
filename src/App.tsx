@@ -5,11 +5,12 @@ import TimerRenderer from "./layout/timer/TimerRenderer";
 import { CounterTimer, Timer, TimerMap, TimerType } from "./logic/Timer";
 import Header from "./layout/header/Header";
 import useGlobalTimersState from "./state/useGlobalTimersState";
+import useBeeping from "./state/useBeeping";
 
 const waterTimer: CounterTimer = {
   type: TimerType.CounterTimer,
   title: "Drink 1/2 Hydroflask",
-  durationInSeconds: 60,
+  durationInSeconds: 5,
 };
 
 const timers: TimerMap = {
@@ -23,6 +24,8 @@ const App = (): JSX.Element => {
   useEffect(() => {
     addTimers(timersList.length);
   }, [addTimers, timersList]);
+
+  useBeeping();
 
   return (
     <>

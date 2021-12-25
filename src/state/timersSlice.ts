@@ -1,5 +1,4 @@
-import { createReducer, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { stringify } from "querystring";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface TimerState {
   seconds: number;
