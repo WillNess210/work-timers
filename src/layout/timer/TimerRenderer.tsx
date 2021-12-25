@@ -5,13 +5,14 @@ import "./timer.css";
 
 interface TimerRendererProps {
   timer: Timer;
+  timerId: string;
 }
 
-const TimerRenderer = ({ timer }: TimerRendererProps): JSX.Element => {
+const TimerRenderer = ({ timer, timerId }: TimerRendererProps): JSX.Element => {
   if (timer.type === TimerType.CounterTimer) {
     return (
       <div className="timer">
-        <CounterTimerRenderer timer={timer as CounterTimer} />
+        <CounterTimerRenderer timer={timer as CounterTimer} timerId={timerId} />
       </div>
     );
   }

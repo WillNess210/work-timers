@@ -7,6 +7,8 @@ export interface Timer {
   title: string;
 }
 
+export type TimerMap = { [key: string]: Timer };
+
 export interface CounterTimer extends Timer {
   type: TimerType.CounterTimer;
   durationInSeconds: number;
