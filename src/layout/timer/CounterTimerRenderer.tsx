@@ -3,7 +3,7 @@ import { CounterTimer } from "../../logic/Timer";
 import "./timer.css";
 import useCounterTimer from "../../logic/hooks/useCounterTimer";
 import { Button, Heading, IconButton, Stack } from "@chakra-ui/react";
-import TimeDisplay from "../../components/TimeDisplay";
+import TimeDisplay, { TimeDisplayState } from "../../components/TimeDisplay";
 import { GrPlay, GrPause } from "react-icons/gr";
 import PlayStopButton from "../../components/Buttons/PlayStopButton";
 import RestartButton from "../../components/Buttons/RestartButton";
@@ -32,7 +32,16 @@ const CounterTimerRenderer = ({
       >
         Completed {state.timesCompleted} times today
       </Heading>
-      <TimeDisplay seconds={state.secondsRemaining} stopped={state.stopped} />
+      <TimeDisplay
+        seconds={state.secondsRemaining}
+        state={
+          state.stopped
+            ? TimeDisplayState.Stopped
+            : state.markedForRestart
+            ? TimeDisplayState.MarkedForRestart
+            : TimeDisplayState.Normal
+        }
+      />
 
       <Stack direction="column" spacing="1rem" align="center">
         <PlayStopButton

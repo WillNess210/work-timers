@@ -10,6 +10,7 @@ interface UseCounterTimerResponse {
   secondsRemaining: number;
   timesCompleted: number;
   stopped: boolean;
+  markedForRestart: boolean;
   setStopped: (stopped: boolean) => void;
   // actions
   complete: () => void;
@@ -26,6 +27,7 @@ export default function useCounterTimer(
     timerState,
     secondsRemaining,
     stopped,
+    markedForRestart,
     setStopped,
     incrementTimesCompleted,
     resetTimer,
@@ -48,6 +50,7 @@ export default function useCounterTimer(
     timesCompleted,
     secondsRemaining,
     stopped,
+    markedForRestart,
     setStopped,
     complete: incrementTimesCompleted,
     restart: resetTimer,

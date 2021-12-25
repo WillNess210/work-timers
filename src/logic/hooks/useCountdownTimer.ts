@@ -6,6 +6,7 @@ interface UseCountdownTimerResponse {
   timerState: TimerState | undefined;
   secondsRemaining: number;
   stopped: boolean;
+  markedForRestart: boolean;
   setStopped: (stopped: boolean) => void;
   resetTimer: () => void;
   resetTimerAndStop: () => void;
@@ -70,6 +71,7 @@ export default function useCountdownTimer(
     timerState,
     secondsRemaining,
     stopped,
+    markedForRestart,
     setStopped,
     resetTimer,
     resetTimerAndStop,

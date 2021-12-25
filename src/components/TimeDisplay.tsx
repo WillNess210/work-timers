@@ -1,9 +1,21 @@
 import React, { useMemo } from "react";
 import { Heading } from "@chakra-ui/react";
 
+export enum TimeDisplayState {
+  Normal,
+  Stopped,
+  MarkedForRestart,
+}
+
+const timeDisplayStateToColor: { [stateValue in TimeDisplayState]: string } = {
+  [TimeDisplayState.Normal]: "black",
+  [TimeDisplayState.Stopped]: "red",
+  [TimeDisplayState.MarkedForRestart]: "green",
+};
+
 interface TimeDisplayProps {
   seconds: number;
-  stopped: boolean;
+  state: TimeDisplayState;
 }
 
 interface TimeDisplay {
@@ -42,13 +54,13 @@ const getTimeDisplayString = (timeDisplay: TimeDisplay): string => {
   return displayString;
 };
 
-const TimeDisplay = ({ seconds, stopped }: TimeDisplayProps): JSX.Element => {
+const TimeDisplay = ({ seconds, state }: TimeDisplayProps): JSX.Element => {
   const timeDisplay = useMemo(
     () => getTimeDisplayString(getTimeDisplay(seconds)),
     [seconds]
   );
   return (
-    <Heading size="3xl" color={stopped ? "red" : "black"}>
+    <Heading size="3xl" color={timeDisplayStateToColor[state]}>
       {timeDisplay}
     </Heading>
   );
