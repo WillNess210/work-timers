@@ -1,4 +1,4 @@
-import { Heading, Stack } from "@chakra-ui/react";
+import { Flex, Heading, Stack } from "@chakra-ui/react";
 import React from "react";
 import NextButton from "../../components/Buttons/NextButton";
 import PlayStopButton from "../../components/Buttons/PlayStopButton";
@@ -20,7 +20,7 @@ const MultiStateTimerRenderer = ({
   const state = useMultiStateTimer(timerId, timer.states);
 
   return (
-    <div className="timerWrapper">
+    <Stack align="center" height="100%">
       <TimerHeader
         title={timer.title}
         muteButtonProps={{
@@ -28,40 +28,47 @@ const MultiStateTimerRenderer = ({
           setMuted: state.setMuted,
         }}
       />
-      <Stack direction="row" align="center" spacing="5rem">
-        {state.states.map((stateState, i: number) => {
-          return (
-            <TimeDisplay
-              seconds={stateState.totalSeconds}
-              size="xl"
-              state={
-                state.currentIndex === i
-                  ? TimeDisplayState.Active
-                  : TimeDisplayState.Normal
-              }
-              heading={stateState.title}
-              headingColor={state.currentIndex === i ? "black" : "gray.500"}
-              key={`${i}`}
-            />
-          );
-        })}
-      </Stack>
-      {/* <Heading size="lg">{state.currentTitle}</Heading>
+      <Flex
+        direction="column"
+        align="center"
+        height="100%"
+        justifyContent="space-around"
+      >
+        <Stack direction="row" align="center" spacing="5rem">
+          {state.states.map((stateState, i: number) => {
+            return (
+              <TimeDisplay
+                seconds={stateState.totalSeconds}
+                size="xl"
+                state={
+                  state.currentIndex === i
+                    ? TimeDisplayState.Active
+                    : TimeDisplayState.Normal
+                }
+                heading={stateState.title}
+                headingColor={state.currentIndex === i ? "black" : "gray.500"}
+                key={`${i}`}
+              />
+            );
+          })}
+        </Stack>
+        {/* <Heading size="lg">{state.currentTitle}</Heading>
       <TimeDisplay
         seconds={state.secondsRemaining}
         state={
           state.stopped ? TimeDisplayState.Stopped : TimeDisplayState.Normal
         }
       /> */}
-      <PlayStopButton
-        stopped={state.stopped}
-        onClick={() => state.setStopped(!state.stopped)}
-      />
-      <NextButton
-        onClick={state.moveToNextState}
-        buttonText={`Switch to ${state.nextStateTitle}`}
-      />
-    </div>
+        <PlayStopButton
+          stopped={state.stopped}
+          onClick={() => state.setStopped(!state.stopped)}
+        />
+        <NextButton
+          onClick={state.moveToNextState}
+          buttonText={`Switch to ${state.nextStateTitle}`}
+        />
+      </Flex>
+    </Stack>
   );
 };
 

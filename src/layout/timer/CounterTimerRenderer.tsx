@@ -22,7 +22,7 @@ const CounterTimerRenderer = ({
   const state = useCounterTimer(timerId, timer);
 
   return (
-    <div className="timerWrapper">
+    <Stack align="center" height="100%">
       <TimerHeader
         title={timer.title}
         muteButtonProps={{
@@ -63,7 +63,7 @@ const CounterTimerRenderer = ({
         {/* Restart buttons */}
         <RestartButton onClick={state.restart} />
       </Stack>
-    </div>
+    </Stack>
   );
 };
 
