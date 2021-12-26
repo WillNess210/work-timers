@@ -15,7 +15,7 @@ const Header = ({
   stopAllTimers,
 }: HeaderProps): JSX.Element => {
   return (
-    <Box bg="tomato" w="100%">
+    <Box bg="tomato" w="100%" className="header">
       <Flex width="100%">
         <Stack
           direction="row"

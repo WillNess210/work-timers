@@ -30,7 +30,12 @@ const App = (): JSX.Element => {
   return (
     <>
       <Header startAllTimers={startAllTimers} stopAllTimers={stopAllTimers} />
-      <SimpleGrid minChildWidth="500px" spacing="40px" marginTop="1rem">
+      <SimpleGrid
+        minChildWidth="500px"
+        spacing="40px"
+        marginTop="5rem"
+        marginBottom="2rem"
+      >
         {timersList.map((timer, i) => (
           <TimerRenderer timer={timer} timerId={`${i}`} />
         ))}
