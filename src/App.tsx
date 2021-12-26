@@ -13,10 +13,12 @@ import Header from "./layout/header/Header";
 import useGlobalTimersState from "./state/useGlobalTimersState";
 import useBeeping from "./state/useBeeping";
 
+const IS_PROD = true;
+
 const waterTimer: CounterTimer = {
   type: TimerType.CounterTimer,
   title: "Drink 1/2 Hydroflask",
-  durationInSeconds: 7200,
+  durationInSeconds: IS_PROD ? 7200 : 30,
 };
 
 const officeTimer: StopwatchTimer = {
@@ -28,8 +30,8 @@ const standingTimer: MultiStateTimer = {
   type: TimerType.MultiStateTimer,
   title: "Stand some you lazy ass",
   states: [
-    { title: "Sitting", durationInSeconds: 3600 },
-    { title: "Standing", durationInSeconds: 3600 },
+    { title: "Sitting", durationInSeconds: IS_PROD ? 3600 : 20 },
+    { title: "Standing", durationInSeconds: IS_PROD ? 3600 : 20 },
   ],
 };
 
@@ -37,8 +39,8 @@ const breakTimer: MultiStateTimer = {
   type: TimerType.MultiStateTimer,
   title: "Take a break my boi",
   states: [
-    { title: "Working", durationInSeconds: 3600 },
-    { title: "Breaking.. bad", durationInSeconds: 600 },
+    { title: "Working", durationInSeconds: IS_PROD ? 3600 : 45 },
+    { title: "Breaking.. bad", durationInSeconds: IS_PROD ? 600 : 15 },
   ],
 };
 
