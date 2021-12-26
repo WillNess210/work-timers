@@ -29,15 +29,8 @@ const CounterTimerRenderer = ({
           muted: state.muted,
           setMuted: state.setMuted,
         }}
+        subTitle={`Completed ${state.timesCompleted} times today`}
       />
-      <Heading
-        size="md"
-        color="gray.500"
-        fontWeight="semibold"
-        letterSpacing="wide"
-      >
-        Completed {state.timesCompleted} times today
-      </Heading>
       <TimeDisplay
         seconds={state.secondsRemaining}
         state={
@@ -55,7 +48,7 @@ const CounterTimerRenderer = ({
           onClick={() => state.setStopped(!state.stopped)}
         />
         {/* Complete buttons */}
-        <Stack direction="row">
+        <Stack direction="row" marginTop="0px !important">
           {state.secondsRemaining > 0 && (
             <PlusButton onClick={state.complete} />
           )}

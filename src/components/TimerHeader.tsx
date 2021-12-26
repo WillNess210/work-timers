@@ -1,4 +1,4 @@
-import { Flex, Heading, Spacer } from "@chakra-ui/react";
+import { Flex, Heading, Spacer, Stack } from "@chakra-ui/react";
 import React from "react";
 import MuteButton from "./MuteButton";
 
@@ -8,6 +8,7 @@ interface TimerHeaderProps {
     muted: boolean;
     setMuted: (muted: boolean) => void;
   };
+  subTitle?: string;
 }
 
 const MUTE_BUTTON_SIZE = 60;
@@ -15,9 +16,24 @@ const MUTE_BUTTON_SIZE = 60;
 const TimerHeader = ({
   title,
   muteButtonProps,
+  subTitle,
 }: TimerHeaderProps): JSX.Element => {
   if (!muteButtonProps) {
-    return <Heading size="lg">{title}</Heading>;
+    return (
+      <Stack align="center">
+        <Heading size="lg">{title}</Heading>
+        {subTitle && (
+          <Heading
+            size="md"
+            color="gray.500"
+            fontWeight="semibold"
+            letterSpacing="wide"
+          >
+            {subTitle}
+          </Heading>
+        )}
+      </Stack>
+    );
   }
 
   return (
@@ -31,9 +47,19 @@ const TimerHeader = ({
         hoverColor="#888888"
       />
       <Spacer />
-      <Heading size="lg" ml={`-${MUTE_BUTTON_SIZE}px`}>
-        {title}
-      </Heading>
+      <Stack align="center" ml={`-${MUTE_BUTTON_SIZE}px`}>
+        <Heading size="lg">{title}</Heading>
+        {subTitle && (
+          <Heading
+            size="md"
+            color="gray.500"
+            fontWeight="semibold"
+            letterSpacing="wide"
+          >
+            {subTitle}
+          </Heading>
+        )}
+      </Stack>
       <Spacer />
       <div />
     </Flex>
