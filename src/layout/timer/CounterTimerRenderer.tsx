@@ -2,16 +2,8 @@ import React from "react";
 import { CounterTimer } from "../../logic/Timer";
 import "./timer.css";
 import useCounterTimer from "../../logic/hooks/useCounterTimer";
-import {
-  Button,
-  Flex,
-  Heading,
-  IconButton,
-  Spacer,
-  Stack,
-} from "@chakra-ui/react";
+import { Flex, Heading, Spacer, Stack } from "@chakra-ui/react";
 import TimeDisplay, { TimeDisplayState } from "../../components/TimeDisplay";
-import { GrPlay, GrPause } from "react-icons/gr";
 import PlayStopButton from "../../components/Buttons/PlayStopButton";
 import RestartButton from "../../components/Buttons/RestartButton";
 import RestartPlusButton from "../../components/Buttons/RestartPlusButton";
