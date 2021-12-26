@@ -33,25 +33,26 @@ const MultiStateTimerRenderer = ({
           return (
             <TimeDisplay
               seconds={stateState.totalSeconds}
-              size="lg"
+              size="xl"
               state={
                 state.currentIndex === i
                   ? TimeDisplayState.Active
                   : TimeDisplayState.Normal
               }
               heading={stateState.title}
+              headingColor={state.currentIndex === i ? "black" : "gray.500"}
               key={`${i}`}
             />
           );
         })}
       </Stack>
-      <Heading size="lg">{state.currentTitle}</Heading>
+      {/* <Heading size="lg">{state.currentTitle}</Heading>
       <TimeDisplay
         seconds={state.secondsRemaining}
         state={
           state.stopped ? TimeDisplayState.Stopped : TimeDisplayState.Normal
         }
-      />
+      /> */}
       <PlayStopButton
         stopped={state.stopped}
         onClick={() => state.setStopped(!state.stopped)}

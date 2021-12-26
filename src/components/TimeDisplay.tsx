@@ -20,6 +20,7 @@ interface TimeDisplayProps {
   state: TimeDisplayState;
   size?: string;
   heading?: string;
+  headingColor?: string;
 }
 
 interface TimeDisplayValues {
@@ -63,6 +64,7 @@ const TimeDisplay = ({
   state,
   size = "3xl",
   heading,
+  headingColor = "gray.500",
 }: TimeDisplayProps): JSX.Element => {
   const timeDisplayString = useMemo(
     () => getTimeDisplayString(getTimeDisplay(seconds)),
@@ -79,7 +81,7 @@ const TimeDisplay = ({
 
   return (
     <Stack align="center">
-      <Heading size="sm" color="gray.500">
+      <Heading size="md" color={headingColor}>
         {heading}
       </Heading>
       {timeDisplayElement}
