@@ -27,6 +27,28 @@ const MultiStateTimerRenderer = ({
           muted: state.muted,
           setMuted: state.setMuted,
         }}
+        subTitle={
+          <Stack direction="row" align="center" spacing="5rem">
+            {state.states.map((stateState, i: number) => {
+              return (
+                <TimeDisplay
+                  seconds={stateState.totalSeconds}
+                  size="xl"
+                  state={
+                    state.currentIndex === i
+                      ? state.stopped
+                        ? TimeDisplayState.Stopped
+                        : TimeDisplayState.Active
+                      : TimeDisplayState.Normal
+                  }
+                  heading={stateState.title}
+                  headingColor={state.currentIndex === i ? "black" : "gray.500"}
+                  key={`${i}`}
+                />
+              );
+            })}
+          </Stack>
+        }
       />
       <Flex
         direction="column"
@@ -34,31 +56,13 @@ const MultiStateTimerRenderer = ({
         height="100%"
         justifyContent="space-around"
       >
-        <Stack direction="row" align="center" spacing="5rem">
-          {state.states.map((stateState, i: number) => {
-            return (
-              <TimeDisplay
-                seconds={stateState.totalSeconds}
-                size="xl"
-                state={
-                  state.currentIndex === i
-                    ? TimeDisplayState.Active
-                    : TimeDisplayState.Normal
-                }
-                heading={stateState.title}
-                headingColor={state.currentIndex === i ? "black" : "gray.500"}
-                key={`${i}`}
-              />
-            );
-          })}
-        </Stack>
-        {/* <Heading size="lg">{state.currentTitle}</Heading>
-      <TimeDisplay
-        seconds={state.secondsRemaining}
-        state={
-          state.stopped ? TimeDisplayState.Stopped : TimeDisplayState.Normal
-        }
-      /> */}
+        <Heading size="lg">{state.currentTitle}</Heading>
+        <TimeDisplay
+          seconds={state.secondsRemaining}
+          state={
+            state.stopped ? TimeDisplayState.Stopped : TimeDisplayState.Normal
+          }
+        />
         <PlayStopButton
           stopped={state.stopped}
           onClick={() => state.setStopped(!state.stopped)}

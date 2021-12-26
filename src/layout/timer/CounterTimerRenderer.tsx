@@ -9,6 +9,7 @@ import RestartButton from "../../components/Buttons/RestartButton";
 import RestartPlusButton from "../../components/Buttons/RestartPlusButton";
 import PlusButton from "../../components/Buttons/PlusButton";
 import TimerHeader from "../../components/TimerHeader";
+import Subtitle from "../../components/Font/Subtitle";
 
 interface CounterTimerRendererProps {
   timer: CounterTimer;
@@ -29,7 +30,9 @@ const CounterTimerRenderer = ({
           muted: state.muted,
           setMuted: state.setMuted,
         }}
-        subTitle={`Completed ${state.timesCompleted} times today`}
+        subTitle={
+          <Subtitle text={`Completed ${state.timesCompleted} times today`} />
+        }
       />
       <TimeDisplay
         seconds={state.secondsRemaining}

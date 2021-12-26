@@ -1,5 +1,5 @@
+import React, { ReactNode } from "react";
 import { Flex, Heading, Spacer, Stack } from "@chakra-ui/react";
-import React from "react";
 import MuteButton from "./MuteButton";
 
 interface TimerHeaderProps {
@@ -8,7 +8,7 @@ interface TimerHeaderProps {
     muted: boolean;
     setMuted: (muted: boolean) => void;
   };
-  subTitle?: string;
+  subTitle?: ReactNode;
 }
 
 const MUTE_BUTTON_SIZE = 60;
@@ -22,16 +22,7 @@ const TimerHeader = ({
     return (
       <Stack align="center">
         <Heading size="lg">{title}</Heading>
-        {subTitle && (
-          <Heading
-            size="md"
-            color="gray.500"
-            fontWeight="semibold"
-            letterSpacing="wide"
-          >
-            {subTitle}
-          </Heading>
-        )}
+        {subTitle}
       </Stack>
     );
   }
