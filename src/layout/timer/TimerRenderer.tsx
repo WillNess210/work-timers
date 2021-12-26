@@ -9,7 +9,7 @@ import {
 import CounterTimerRenderer from "./CounterTimerRenderer";
 import "./timer.css";
 import useTimerFlashingState from "../../state/useTimerFlashingState";
-import StopwatchTimerRenderer from "./StopwatchTimer";
+import StopwatchTimerRenderer from "./StopwatchTimerRenderer";
 
 interface TimerRendererProps {
   timer: Timer;

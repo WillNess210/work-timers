@@ -20,12 +20,13 @@ export interface StopwatchTimer extends Timer {
   type: TimerType.Stopwatch;
 }
 
-// interface TimerState {
-//   title: string;
-//   durationInSeconds: number;
-// }
+interface TimerState {
+  title: string;
+  durationInSeconds: number;
+}
 
-// export interface MultiStateTimer extends Timer {
-//   type: TimerType.MultiStateTimer;
-
-// }
+export interface MultiStateTimer extends Timer {
+  type: TimerType.MultiStateTimer;
+  states: TimerState[];
+  // TODO keepInitialRatio: boolean; // calculates ratio between each timer state and if you go over or switch early, it increases/decreases other times
+}
