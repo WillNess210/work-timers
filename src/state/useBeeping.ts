@@ -10,7 +10,8 @@ interface UseBeepingResponse {}
 const shouldBeep = (state: TimersState): boolean => {
   const states = Object.keys(state).map((key: string) => state[key]);
   for (let i = 0; i < states.length; i++) {
-    if (states[i].flashing && !states[i].stopped) return true;
+    if (states[i].flashing && !states[i].stopped && !states[i].muted)
+      return true;
   }
   return false;
 };

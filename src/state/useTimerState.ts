@@ -1,15 +1,17 @@
 import { useCallback, useEffect, useMemo } from "react";
 import useTimer from "../logic/hooks/useTimer";
 import { useAppDispatch, useAppSelector } from "../store";
-import timersSlice, { TimersState, TimerState } from "./timersSlice";
+import timersSlice, { TimerState } from "./timersSlice";
 
-interface UseTimerStateResponse {
+export interface UseTimerStateResponse {
   timerState: TimerState | undefined;
   seconds: number;
   stopped: boolean;
   flashing: boolean;
+  muted: boolean;
   setStopped: (stopped: boolean) => void;
   setFlashing: (flashing: boolean) => void;
+  setMuted: (muted: boolean) => void;
   incrementTimesCompleted: () => void;
 }
 
@@ -57,6 +59,15 @@ export default function useTimerState(key: string): UseTimerStateResponse {
     [key, timerState, dispatch]
   );
 
+  const setMuted = useCallback(
+    (muted: boolean) => {
+      if (timerState) {
+        dispatch(actions.setTimerMuted({ key, value: muted }));
+      }
+    },
+    [key, timerState, dispatch]
+  );
+
   const incrementTimesCompleted = useCallback(() => {
     if (timerState) {
       dispatch(
@@ -86,8 +97,10 @@ export default function useTimerState(key: string): UseTimerStateResponse {
     seconds: timerState ? timerState.seconds : -1,
     stopped: timerState ? timerState.stopped : true,
     flashing: timerState ? timerState.flashing : true,
+    muted: timerState ? timerState.muted : true,
     setStopped,
     setFlashing,
+    setMuted,
     incrementTimesCompleted,
   };
 }

@@ -7,6 +7,8 @@ interface UseCounterTimerResponse {
   timesCompleted: number;
   stopped: boolean;
   markedForRestart: boolean;
+  muted: boolean;
+  setMuted: (muted: boolean) => void;
   setStopped: (stopped: boolean) => void;
   // actions
   complete: () => void;
@@ -24,6 +26,8 @@ export default function useCounterTimer(
     secondsRemaining,
     stopped,
     markedForRestart,
+    muted,
+    setMuted,
     setStopped,
     incrementTimesCompleted,
     resetTimer,
@@ -47,6 +51,8 @@ export default function useCounterTimer(
     secondsRemaining,
     stopped,
     markedForRestart,
+    muted,
+    setMuted,
     setStopped,
     complete: incrementTimesCompleted,
     restart: resetTimer,

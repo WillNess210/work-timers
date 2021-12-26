@@ -2,18 +2,28 @@ import React from "react";
 import { CounterTimer } from "../../logic/Timer";
 import "./timer.css";
 import useCounterTimer from "../../logic/hooks/useCounterTimer";
-import { Button, Heading, IconButton, Stack } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Heading,
+  IconButton,
+  Spacer,
+  Stack,
+} from "@chakra-ui/react";
 import TimeDisplay, { TimeDisplayState } from "../../components/TimeDisplay";
 import { GrPlay, GrPause } from "react-icons/gr";
 import PlayStopButton from "../../components/Buttons/PlayStopButton";
 import RestartButton from "../../components/Buttons/RestartButton";
 import RestartPlusButton from "../../components/Buttons/RestartPlusButton";
 import PlusButton from "../../components/Buttons/PlusButton";
+import MuteButton from "../../components/MuteButton";
 
 interface CounterTimerRendererProps {
   timer: CounterTimer;
   timerId: string;
 }
+
+const MUTE_BUTTON_SIZE = 60;
 
 const CounterTimerRenderer = ({
   timer,
@@ -23,7 +33,22 @@ const CounterTimerRenderer = ({
 
   return (
     <div className="timerWrapper">
-      <Heading size="lg">{timer.title}</Heading>
+      <Flex width="100%">
+        <MuteButton
+          muted={state.muted}
+          volume={1}
+          onClick={() => state.setMuted(!state.muted)}
+          size={MUTE_BUTTON_SIZE}
+          color="#dddddd"
+          hoverColor="#888888"
+        />
+        <Spacer />
+        <Heading size="lg" ml={`-${MUTE_BUTTON_SIZE}px`}>
+          {timer.title}
+        </Heading>
+        <Spacer />
+        <div />
+      </Flex>
       <Heading
         size="md"
         color="gray.500"

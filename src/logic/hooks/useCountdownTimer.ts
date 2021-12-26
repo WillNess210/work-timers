@@ -1,25 +1,23 @@
 import { useCallback, useMemo, useState } from "react";
-import { TimerState } from "../../state/timersSlice";
-import useTimerState from "../../state/useTimerState";
+import useTimerState, {
+  UseTimerStateResponse,
+} from "../../state/useTimerState";
 
-interface UseCountdownTimerResponse {
-  timerState: TimerState | undefined;
+interface UseCountdownTimerResponse
+  extends Omit<UseTimerStateResponse, "seconds"> {
   secondsRemaining: number;
-  stopped: boolean;
   markedForRestart: boolean;
-  setStopped: (stopped: boolean) => void;
-  setFlashing: (flashing: boolean) => void;
   resetTimer: () => void;
   resetTimerAndStop: () => void;
   resetTimerAndStart: () => void;
   setMarkedForRestart: () => void;
-  incrementTimesCompleted: () => void;
 }
 
 export default function useCountdownTimer(
   key: string,
   durationInSeconds: number
 ): UseCountdownTimerResponse {
+  const useTimerStateResponse = useTimerState(key);
   const {
     timerState,
     stopped,
@@ -28,7 +26,7 @@ export default function useCountdownTimer(
     setStopped,
     setFlashing,
     incrementTimesCompleted,
-  } = useTimerState(key);
+  } = useTimerStateResponse;
 
   const [previousFinishedTimestamp, setPreviousFinishedTimestamp] = useState(0);
   const [markedForRestart, setMarkedForRestart] = useState(false);
@@ -85,6 +83,7 @@ export default function useCountdownTimer(
   }, [resetTimer, setStopped]);
 
   return {
+    ...useTimerStateResponse,
     timerState,
     secondsRemaining,
     stopped,

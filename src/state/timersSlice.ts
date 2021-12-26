@@ -4,6 +4,8 @@ export interface TimerState {
   seconds: number;
   stopped: boolean;
   flashing: boolean;
+  // any timers with audio
+  muted: boolean;
   // counter timer specific
   timesCompleted: number;
 }
@@ -16,6 +18,7 @@ const defaultTimerState: TimerState = {
   seconds: 0,
   stopped: true,
   flashing: false,
+  muted: false,
   timesCompleted: 0,
 };
 
@@ -59,6 +62,12 @@ const timersSlice = createSlice({
       action: PayloadAction<{ key: string; value: boolean }>
     ) => {
       state[action.payload.key].flashing = action.payload.value;
+    },
+    setTimerMuted: (
+      state,
+      action: PayloadAction<{ key: string; value: boolean }>
+    ) => {
+      state[action.payload.key].muted = action.payload.value;
     },
     // all timer actions
     startAllTimers: (state) => {

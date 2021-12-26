@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import AudioSlider from "../../components/AudioSlider";
 import useAudioState from "../../state/useAudioState";
 import {
@@ -8,6 +8,7 @@ import {
   BiVolumeMute,
 } from "react-icons/bi";
 import { Stack } from "@chakra-ui/react";
+import MuteButton from "../../components/MuteButton";
 
 const HeaderAudioSlider = (): JSX.Element => {
   const { volume, setVolume, muted, setMuted } = useAudioState();
@@ -28,15 +29,11 @@ const HeaderAudioSlider = (): JSX.Element => {
         setValue={(value: number) => setVolume(value / 100)}
         disabled={muted}
       />
-      {muted ? (
-        <BiVolumeMute {...iconProps} />
-      ) : volume == 0 ? (
-        <BiVolume {...iconProps} />
-      ) : volume >= 0.5 ? (
-        <BiVolumeFull {...iconProps} />
-      ) : (
-        <BiVolumeLow {...iconProps} />
-      )}
+      <MuteButton
+        muted={muted}
+        volume={volume}
+        onClick={() => setMuted(!muted)}
+      />
       <div style={{ marginRight: "1rem" }} />
     </Stack>
   );
