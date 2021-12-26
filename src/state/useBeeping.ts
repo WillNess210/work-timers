@@ -5,8 +5,6 @@ import { TimersState } from "./timersSlice";
 import file from "./beep.mp3";
 import useAudioState from "./useAudioState";
 
-interface UseBeepingResponse {}
-
 const shouldBeep = (state: TimersState): boolean => {
   const states = Object.keys(state).map((key: string) => state[key]);
   for (let i = 0; i < states.length; i++) {

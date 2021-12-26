@@ -38,7 +38,6 @@ const AudioSlider = ({
         mt="-10"
         ml="-5"
         w="12"
-        placement
       ></SliderMark>
       <SliderTrack bg="white">
         <SliderFilledTrack bg="blue.500" />

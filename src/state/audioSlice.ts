@@ -18,7 +18,6 @@ const audioSlice = createSlice({
       state.muted = action.payload;
     },
     setVolume: (state, action: PayloadAction<number>) => {
-      console.log(`Setting volume to ${action.payload}`);
       state.volume = Math.min(Math.max(0, action.payload), 1);
     },
   },

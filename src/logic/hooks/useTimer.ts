@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import useInterval from "./useInterval";
 
 export interface UseTimerResponse {

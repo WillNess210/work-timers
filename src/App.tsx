@@ -6,7 +6,6 @@ import {
   CounterTimer,
   MultiStateTimer,
   StopwatchTimer,
-  Timer,
   TimerMap,
   TimerType,
 } from "./logic/Timer";
@@ -56,7 +55,7 @@ const App = (): JSX.Element => {
   const { addTimers, startAllTimers, stopAllTimers } = useGlobalTimersState();
   useEffect(() => {
     addTimers(timersList.length);
-  }, [addTimers, timersList]);
+  }, [addTimers]);
 
   useBeeping();
 
@@ -69,9 +68,10 @@ const App = (): JSX.Element => {
         marginTop="5rem"
         marginBottom="2rem"
       >
-        {timersList.map((timer, i) => (
-          <TimerRenderer timer={timer} timerId={`${i}`} />
-        ))}
+        {timersList.map((timer, i) => {
+          const key = `${i}`;
+          return <TimerRenderer timer={timer} timerId={key} key={key} />;
+        })}
       </SimpleGrid>
     </>
   );

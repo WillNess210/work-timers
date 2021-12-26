@@ -34,7 +34,7 @@ const MuteButton = ({
   };
 
   if (muted) return <BiVolumeMute {...iconProps} />;
-  if (volume == 0) return <BiVolume {...iconProps} />;
+  if (volume === 0) return <BiVolume {...iconProps} />;
   if (volume < 0.5) return <BiVolumeLow {...iconProps} />;
   return <BiVolumeFull {...iconProps} />;
 };

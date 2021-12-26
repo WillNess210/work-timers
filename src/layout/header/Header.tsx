@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Stack, Heading, Flex, Spacer } from "@chakra-ui/layout";
-import { Button, Icon } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { FaRegClock } from "react-icons/fa";
 import "./header.css";
 import HeaderAudioSlider from "./HeaderAudioSlider";

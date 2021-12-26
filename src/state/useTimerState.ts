@@ -41,7 +41,7 @@ export default function useTimerState(
         dispatch(actions.setTimerSeconds({ key, value: seconds }));
       }
     },
-    [key, timerState, dispatch, setTimerStopped]
+    [key, timerState, dispatch]
   );
 
   const setStopped = useCallback(
@@ -50,7 +50,7 @@ export default function useTimerState(
         dispatch(actions.setTimerStopped({ key, value: stopped }));
       }
     },
-    [key, timerState, dispatch, setTimerStopped]
+    [key, timerState, dispatch]
   );
 
   const setFlashing = useCallback(

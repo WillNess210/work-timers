@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import timersSlice from "../../state/timersSlice";
-import { useAppDispatch, useAppSelector } from "../../store";
+import { useAppDispatch } from "../../store";
 import { TimerState } from "../Timer";
 import useCountdownTimer from "./useCountdownTimer";
 
@@ -46,7 +46,7 @@ export default function useMultiStateTimer(
         })
       );
     },
-    [dispatch, currentStateIndex]
+    [dispatch, currentStateIndex, key]
   );
 
   const countdownState = useCountdownTimer(
@@ -63,12 +63,12 @@ export default function useMultiStateTimer(
 
   const nextStateTitle = useMemo(() => {
     return states[getNextStateIndex()].title;
-  }, [states, getNextStateIndex, currentStateIndex]);
+  }, [states, getNextStateIndex]);
 
   const moveToNextState = useCallback(() => {
     countdownState.resetTimer();
     setCurrentStateIndex(getNextStateIndex());
-  }, [setCurrentStateIndex, countdownState.resetTimer]);
+  }, [setCurrentStateIndex, countdownState, getNextStateIndex]);
 
   const statesResponse = useMemo(() => {
     if (!timerState) return [];

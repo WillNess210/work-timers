@@ -22,13 +22,13 @@ interface TimeDisplayProps {
   heading?: string;
 }
 
-interface TimeDisplay {
+interface TimeDisplayValues {
   hours: number;
   minutes: number;
   seconds: number;
 }
 
-const getTimeDisplay = (seconds: number): TimeDisplay => {
+const getTimeDisplay = (seconds: number): TimeDisplayValues => {
   let secondsRemaining = seconds;
 
   const hours = ~~(secondsRemaining / 3600);
@@ -48,7 +48,7 @@ const getNumberDisplay = (value: number): string | number => {
   return value < 10 ? `0${value}` : value;
 };
 
-const getTimeDisplayString = (timeDisplay: TimeDisplay): string => {
+const getTimeDisplayString = (timeDisplay: TimeDisplayValues): string => {
   const displayString = `${getNumberDisplay(
     timeDisplay.minutes
   )}:${getNumberDisplay(timeDisplay.seconds)}`;
@@ -64,13 +64,13 @@ const TimeDisplay = ({
   size = "3xl",
   heading,
 }: TimeDisplayProps): JSX.Element => {
-  const timeDisplay = useMemo(
+  const timeDisplayString = useMemo(
     () => getTimeDisplayString(getTimeDisplay(seconds)),
     [seconds]
   );
   const timeDisplayElement: JSX.Element = (
     <Heading size={size} color={timeDisplayStateToColor[state]}>
-      {timeDisplay}
+      {timeDisplayString}
     </Heading>
   );
   if (!heading) {

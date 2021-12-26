@@ -1,5 +1,4 @@
 import React from "react";
-import { Heading } from "@chakra-ui/react";
 import TimeDisplay, { TimeDisplayState } from "../../components/TimeDisplay";
 import { StopwatchTimer } from "../../logic/Timer";
 import useTimerState from "../../state/useTimerState";

@@ -40,6 +40,7 @@ const MultiStateTimerRenderer = ({
                   : TimeDisplayState.Normal
               }
               heading={stateState.title}
+              key={`${i}`}
             />
           );
         })}
