@@ -34,10 +34,20 @@ const standingTimer: MultiStateTimer = {
   ],
 };
 
+const breakTimer: MultiStateTimer = {
+  type: TimerType.MultiStateTimer,
+  title: "Take a break my boi",
+  states: [
+    { title: "Working", durationInSeconds: 3600 },
+    { title: "Breaking.. bad", durationInSeconds: 600 },
+  ],
+};
+
 const timers: TimerMap = {
   waterTimer: waterTimer,
   officeTimer: officeTimer,
   standingTimer: standingTimer,
+  breakTimer: breakTimer,
 };
 
 const timersList = Object.values(timers);
