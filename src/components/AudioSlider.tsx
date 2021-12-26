@@ -20,7 +20,6 @@ const AudioSlider = ({
   disabled,
 }: AudioSliderProps): JSX.Element => {
   const [showTooltip, setShowTooltip] = React.useState(false);
-  console.log(`audio slider w value: ${value}`);
   return (
     <Slider
       aria-label="slider-ex-6"

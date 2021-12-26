@@ -8,6 +8,8 @@ export interface TimerState {
   muted: boolean;
   // counter timer specific
   timesCompleted: number;
+  // multi state timer specific
+  statesSeconds: number[];
 }
 
 export interface TimersState {
@@ -20,6 +22,7 @@ const defaultTimerState: TimerState = {
   flashing: false,
   muted: false,
   timesCompleted: 0,
+  statesSeconds: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 };
 
 const initialState: TimersState = {};
@@ -68,6 +71,26 @@ const timersSlice = createSlice({
       action: PayloadAction<{ key: string; value: boolean }>
     ) => {
       state[action.payload.key].muted = action.payload.value;
+    },
+    setStatesSeconds: (
+      state,
+      action: PayloadAction<{ key: string; value: number[] }>
+    ) => {
+      state[action.payload.key].statesSeconds = action.payload.value;
+    },
+    setStatesSecondsAt: (
+      state,
+      action: PayloadAction<{ key: string; index: number; value: number }>
+    ) => {
+      state[action.payload.key].statesSeconds[action.payload.index] =
+        action.payload.value;
+    },
+    addStatesSecondsAt: (
+      state,
+      action: PayloadAction<{ key: string; index: number; value: number }>
+    ) => {
+      state[action.payload.key].statesSeconds[action.payload.index] +=
+        action.payload.value;
     },
     // all timer actions
     startAllTimers: (state) => {

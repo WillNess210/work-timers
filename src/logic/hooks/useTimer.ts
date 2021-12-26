@@ -7,12 +7,17 @@ export interface UseTimerResponse {
   setStopped: (stopped: boolean) => void;
 }
 
-export default function useTimer(): UseTimerResponse {
+export default function useTimer(onTick?: () => void): UseTimerResponse {
   const [seconds, setSeconds] = useState(0);
   const [stopped, setStopped] = useState(true);
 
   useInterval(() => {
-    setSeconds(stopped ? seconds : seconds + 1);
+    if (!stopped) {
+      setSeconds(seconds + 1);
+      if (onTick) {
+        onTick();
+      }
+    }
   }, 1000);
 
   return {

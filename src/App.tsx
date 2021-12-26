@@ -4,6 +4,7 @@ import "./App.css";
 import TimerRenderer from "./layout/timer/TimerRenderer";
 import {
   CounterTimer,
+  MultiStateTimer,
   StopwatchTimer,
   Timer,
   TimerMap,
@@ -24,9 +25,19 @@ const officeTimer: StopwatchTimer = {
   title: "In Office",
 };
 
+const standingTimer: MultiStateTimer = {
+  type: TimerType.MultiStateTimer,
+  title: "Stand some you lazy ass",
+  states: [
+    { title: "Sitting", durationInSeconds: 3600 },
+    { title: "Standing", durationInSeconds: 3600 },
+  ],
+};
+
 const timers: TimerMap = {
   waterTimer: waterTimer,
   officeTimer: officeTimer,
+  standingTimer: standingTimer,
 };
 
 const timersList = Object.values(timers);

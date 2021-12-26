@@ -7,17 +7,20 @@ export interface UseTimerStateResponse {
   timerState: TimerState | undefined;
   seconds: number;
   stopped: boolean;
-  flashing: boolean;
-  muted: boolean;
   setStopped: (stopped: boolean) => void;
+  flashing: boolean;
   setFlashing: (flashing: boolean) => void;
+  muted: boolean;
   setMuted: (muted: boolean) => void;
   incrementTimesCompleted: () => void;
 }
 
 const actions = timersSlice.actions;
 
-export default function useTimerState(key: string): UseTimerStateResponse {
+export default function useTimerState(
+  key: string,
+  onTick?: () => void
+): UseTimerStateResponse {
   const state = useAppSelector((state) => state.timers);
   const dispatch = useAppDispatch();
 
@@ -30,7 +33,7 @@ export default function useTimerState(key: string): UseTimerStateResponse {
     currentSeconds,
     stopped: timerStopped,
     setStopped: setTimerStopped,
-  } = useTimer();
+  } = useTimer(onTick);
 
   const setReduxSeconds = useCallback(
     (seconds: number) => {

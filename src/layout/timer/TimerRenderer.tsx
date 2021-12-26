@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Container } from "@chakra-ui/react";
 import {
   CounterTimer,
+  MultiStateTimer,
   StopwatchTimer,
   Timer,
   TimerType,
@@ -10,6 +11,7 @@ import CounterTimerRenderer from "./CounterTimerRenderer";
 import "./timer.css";
 import useTimerFlashingState from "../../state/useTimerFlashingState";
 import StopwatchTimerRenderer from "./StopwatchTimerRenderer";
+import MultiStateTimerRenderer from "./MultiStateTimerRenderer";
 
 interface TimerRendererProps {
   timer: Timer;
@@ -58,6 +60,17 @@ const TimerRenderer = ({ timer, timerId }: TimerRendererProps): JSX.Element => {
         <StopwatchTimerRenderer
           timer={timer as StopwatchTimer}
           timerId={timerId}
+        />
+      </TimerContainer>
+    );
+  }
+
+  if (timer.type === TimerType.MultiStateTimer) {
+    return (
+      <TimerContainer timerId={timerId}>
+        <MultiStateTimerRenderer
+          timerId={timerId}
+          timer={timer as MultiStateTimer}
         />
       </TimerContainer>
     );

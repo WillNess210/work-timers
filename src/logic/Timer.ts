@@ -20,7 +20,7 @@ export interface StopwatchTimer extends Timer {
   type: TimerType.Stopwatch;
 }
 
-interface TimerState {
+export interface TimerState {
   title: string;
   durationInSeconds: number;
 }

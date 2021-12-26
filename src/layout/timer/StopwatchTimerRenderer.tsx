@@ -5,6 +5,7 @@ import { StopwatchTimer } from "../../logic/Timer";
 import useTimerState from "../../state/useTimerState";
 import "./timer.css";
 import PlayStopButton from "../../components/Buttons/PlayStopButton";
+import TimerHeader from "../../components/TimerHeader";
 
 interface StopwatchTimerRendererProps {
   timer: StopwatchTimer;
@@ -19,7 +20,7 @@ const StopwatchTimerRenderer = ({
 
   return (
     <div className="timerWrapper">
-      <Heading size="lg">{timer.title}</Heading>
+      <TimerHeader title={timer.title} />
       <TimeDisplay
         seconds={state.seconds}
         state={

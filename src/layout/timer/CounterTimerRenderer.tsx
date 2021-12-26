@@ -9,13 +9,12 @@ import RestartButton from "../../components/Buttons/RestartButton";
 import RestartPlusButton from "../../components/Buttons/RestartPlusButton";
 import PlusButton from "../../components/Buttons/PlusButton";
 import MuteButton from "../../components/MuteButton";
+import TimerHeader from "../../components/TimerHeader";
 
 interface CounterTimerRendererProps {
   timer: CounterTimer;
   timerId: string;
 }
-
-const MUTE_BUTTON_SIZE = 60;
 
 const CounterTimerRenderer = ({
   timer,
@@ -25,22 +24,13 @@ const CounterTimerRenderer = ({
 
   return (
     <div className="timerWrapper">
-      <Flex width="100%">
-        <MuteButton
-          muted={state.muted}
-          volume={1}
-          onClick={() => state.setMuted(!state.muted)}
-          size={MUTE_BUTTON_SIZE}
-          color="#dddddd"
-          hoverColor="#888888"
-        />
-        <Spacer />
-        <Heading size="lg" ml={`-${MUTE_BUTTON_SIZE}px`}>
-          {timer.title}
-        </Heading>
-        <Spacer />
-        <div />
-      </Flex>
+      <TimerHeader
+        title={timer.title}
+        muteButtonProps={{
+          muted: state.muted,
+          setMuted: state.setMuted,
+        }}
+      />
       <Heading
         size="md"
         color="gray.500"
