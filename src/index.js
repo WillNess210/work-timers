@@ -2,11 +2,23 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { ChakraProvider } from "@chakra-ui/react";
+import NoSleep from "nosleep.js";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./store";
 
+// enabling no sleep
+const noSleep = new NoSleep();
+
+function enableNoSleep() {
+  noSleep.enable();
+  document.removeEventListener("touchstart", enableNoSleep, false);
+}
+
+document.addEventListener("touchstart", enableNoSleep, false);
+
+// rendering app
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
