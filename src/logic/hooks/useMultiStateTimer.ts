@@ -52,7 +52,8 @@ export default function useMultiStateTimer(
   const countdownState = useCountdownTimer(
     key,
     currentState.durationInSeconds,
-    () => addSecondsToCurrentState(1)
+    (secondsSinceLastTick: number) =>
+      addSecondsToCurrentState(secondsSinceLastTick)
   );
   const timerState = countdownState.timerState;
 
@@ -76,7 +77,7 @@ export default function useMultiStateTimer(
       (multiTimerState: TimerState, i: number): StateTimerResponse => {
         return {
           title: multiTimerState.title,
-          totalSeconds: timerState.statesSeconds[i],
+          totalSeconds: Math.round(timerState.statesSeconds[i]),
         };
       }
     );

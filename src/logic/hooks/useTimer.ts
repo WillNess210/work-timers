@@ -7,7 +7,9 @@ export interface UseTimerResponse {
   setStopped: (stopped: boolean) => void;
 }
 
-export default function useTimer(onTick?: () => void): UseTimerResponse {
+export default function useTimer(
+  onTick?: (secondsSinceLastTick: number) => void
+): UseTimerResponse {
   const [seconds, setSeconds] = useState(0);
   const [lastTickTimestamp, setLastTickTimestamp] = useState(Date.now());
   const [stopped, setStopped] = useState(true);
@@ -25,10 +27,11 @@ export default function useTimer(onTick?: () => void): UseTimerResponse {
   useInterval(() => {
     if (!stopped) {
       const now = Date.now();
-      setSeconds(seconds + (now - lastTickTimestamp) / 1000);
+      const timeSinceLastTicket = (now - lastTickTimestamp) / 1000;
+      setSeconds(seconds + timeSinceLastTicket);
       setLastTickTimestamp(now);
       if (onTick) {
-        onTick();
+        onTick(timeSinceLastTicket);
       }
     }
   }, 1000);

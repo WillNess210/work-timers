@@ -19,7 +19,7 @@ const actions = timersSlice.actions;
 
 export default function useTimerState(
   key: string,
-  onTick?: () => void
+  onTick?: (secondsSinceLastTick: number) => void
 ): UseTimerStateResponse {
   const state = useAppSelector((state) => state.timers);
   const dispatch = useAppDispatch();

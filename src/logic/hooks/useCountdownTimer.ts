@@ -16,7 +16,7 @@ interface UseCountdownTimerResponse
 export default function useCountdownTimer(
   key: string,
   durationInSeconds: number,
-  onTick?: () => void
+  onTick?: (secondsSinceLastTick: number) => void
 ): UseCountdownTimerResponse {
   const useTimerStateResponse = useTimerState(key, onTick);
   const {
