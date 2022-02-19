@@ -20,7 +20,7 @@ const MultiStateTimerRenderer = ({
   const state = useMultiStateTimer(timerId, timer.states);
 
   return (
-    <Stack align="center" height="100%">
+    <Stack align="center" height="100%" spacing="0.25rem">
       <TimerHeader
         title={timer.title}
         muteButtonProps={{
@@ -33,7 +33,7 @@ const MultiStateTimerRenderer = ({
               return (
                 <TimeDisplay
                   seconds={stateState.totalSeconds}
-                  size="xl"
+                  size="lg"
                   state={
                     state.currentIndex === i
                       ? state.stopped

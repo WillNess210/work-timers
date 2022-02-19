@@ -62,7 +62,7 @@ const getTimeDisplayString = (timeDisplay: TimeDisplayValues): string => {
 const TimeDisplay = ({
   seconds,
   state,
-  size = "3xl",
+  size = "xl",
   heading,
   headingColor = "gray.500",
 }: TimeDisplayProps): JSX.Element => {

@@ -7,7 +7,7 @@ interface PlayStopButtonProps {
   onClick: () => void;
 }
 
-const ICON_SIZE = 90;
+const ICON_SIZE = 70;
 
 const PlayStopButton = ({
   stopped,

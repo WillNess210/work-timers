@@ -23,7 +23,7 @@ const CounterTimerRenderer = ({
   const state = useCounterTimer(timerId, timer);
 
   return (
-    <Stack align="center" height="100%">
+    <Stack align="center" height="100%" spacing="0.25rem">
       <TimerHeader
         title={timer.title}
         muteButtonProps={{
@@ -56,13 +56,13 @@ const CounterTimerRenderer = ({
             <PlusButton onClick={state.complete} />
           )}
           <RestartPlusButton onClick={state.completeAndRestart} />
-          {state.secondsRemaining > 0 && (
-            <RestartButton
-              onClick={state.completeAndMarkForRestart}
-              buttonText="Complete and Autorestart"
-            />
-          )}
         </Stack>
+        {state.secondsRemaining > 0 && (
+          <RestartButton
+            onClick={state.completeAndMarkForRestart}
+            buttonText="Complete and Autorestart"
+          />
+        )}
         {/* Restart buttons */}
         <RestartButton onClick={state.restart} />
       </Stack>

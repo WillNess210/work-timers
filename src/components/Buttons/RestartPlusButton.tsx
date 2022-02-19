@@ -18,6 +18,7 @@ const RestartPlusButton = ({
       <Button
         bg="blue.100"
         leftIcon={<MdOutlineSettingsBackupRestore size={ICON_SIZE} />}
+        size="sm"
       >
         {buttonText}
       </Button>

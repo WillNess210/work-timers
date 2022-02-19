@@ -21,7 +21,7 @@ const TimerHeader = ({
   if (!muteButtonProps) {
     return (
       <Stack align="center">
-        <Heading size="lg">{title}</Heading>
+        <Heading size="md">{title}</Heading>
         {subTitle}
       </Stack>
     );
@@ -39,10 +39,10 @@ const TimerHeader = ({
       />
       <Spacer />
       <Stack align="center" ml={`-${MUTE_BUTTON_SIZE}px`}>
-        <Heading size="lg">{title}</Heading>
+        <Heading size="md">{title}</Heading>
         {subTitle && (
           <Heading
-            size="md"
+            size="sm"
             color="gray.500"
             fontWeight="semibold"
             letterSpacing="wide"

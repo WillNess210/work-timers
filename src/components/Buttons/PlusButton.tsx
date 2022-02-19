@@ -15,7 +15,7 @@ const PlusButton = ({
 }: PlusButtonProps): JSX.Element => {
   return (
     <Box onClick={onClick}>
-      <Button bg="blue.100" leftIcon={<TiPlus size={ICON_SIZE} />}>
+      <Button bg="blue.100" leftIcon={<TiPlus size={ICON_SIZE} />} size="sm">
         {buttonText}
       </Button>
     </Box>
