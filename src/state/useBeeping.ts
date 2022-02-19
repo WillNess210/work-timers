@@ -16,9 +16,16 @@ const shouldBeep = (state: TimersState): boolean => {
 
 const BEEPING_INTERVAL = 1000;
 
+const DEFAULT_BACKGROUND_COLOR = "#636363";
+const FLASHING_BACKGROUND_COLOR = "#7a7a7a";
+
 export default function useBeeping(): void {
   const timersState = useAppSelector((state) => state.timers);
   const anyFlashing = useMemo(() => shouldBeep(timersState), [timersState]);
+
+  const [backgroundColor, setBackgroundColor] = useState(
+    DEFAULT_BACKGROUND_COLOR
+  );
 
   const { muted, volume } = useAudioState();
 
@@ -35,6 +42,17 @@ export default function useBeeping(): void {
   useInterval(() => {
     if (anyFlashing) {
       audio.play();
+      setBackgroundColor(
+        backgroundColor === DEFAULT_BACKGROUND_COLOR
+          ? FLASHING_BACKGROUND_COLOR
+          : DEFAULT_BACKGROUND_COLOR
+      );
+    } else if (backgroundColor !== DEFAULT_BACKGROUND_COLOR) {
+      setBackgroundColor(DEFAULT_BACKGROUND_COLOR);
     }
   }, BEEPING_INTERVAL);
+
+  useEffect(() => {
+    document.body.style.backgroundColor = backgroundColor;
+  }, [backgroundColor]);
 }

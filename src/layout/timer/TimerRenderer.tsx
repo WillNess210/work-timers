@@ -34,6 +34,7 @@ const TimerContainer = ({
       <Box
         borderWidth="1px"
         borderRadius="lg"
+        borderColor="#787878"
         className="timer"
         bg={bgColor}
         p="1rem"

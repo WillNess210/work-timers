@@ -13,7 +13,7 @@ import Header from "./layout/header/Header";
 import useGlobalTimersState from "./state/useGlobalTimersState";
 import useBeeping from "./state/useBeeping";
 
-const IS_PROD = true;
+const IS_PROD = false;
 
 const waterTimer: CounterTimer = {
   type: TimerType.CounterTimer,

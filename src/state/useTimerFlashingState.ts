@@ -7,7 +7,7 @@ interface UseTimerFlashingStateResponse {
   bgColor: string;
 }
 
-const NON_FLASH_COLOR = "gray.100";
+const NON_FLASH_COLOR = "#8f8f8f"; //"gray.100";
 const FLASH_COLOR = "yellow.200";
 const FLASH_INTERVAL = 200;
 
