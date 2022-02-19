@@ -66,7 +66,7 @@ const App = (): JSX.Element => {
       <Header startAllTimers={startAllTimers} stopAllTimers={stopAllTimers} />
       <SimpleGrid
         minChildWidth="500px"
-        spacing="40px"
+        spacing="1rem"
         marginTop="5rem"
         marginBottom="2rem"
       >
